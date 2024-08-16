@@ -1,6 +1,7 @@
 import 'package:api_connect_flutter/cache/cache_helper.dart';
 import 'package:api_connect_flutter/core/api/dio_consumer.dart';
 import 'package:api_connect_flutter/cubit/user_cubit.dart';
+import 'package:api_connect_flutter/repos/user_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +11,7 @@ void main() {
   CacheHelper().init();
   runApp(
     BlocProvider(
-      create: (context) => UserCubit(DioConsumer(dio: Dio())),
+      create: (context) => UserCubit(UserRepo(api: DioConsumer(dio: Dio()))),
       child: const ApiConnect(),
     ),
   );
